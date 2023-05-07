@@ -10,12 +10,10 @@ const NuevoPresupuesto = ({ presupuesto, setPresupuesto, setIsValidPresupuesto }
 
         if (!presupuesto || presupuesto < 0) {
             setMensaje('No es un presupuesto válido')
-
             return
         }
         setMensaje('')
         setIsValidPresupuesto(true)
-
     }
 
     return (
@@ -31,12 +29,10 @@ const NuevoPresupuesto = ({ presupuesto, setPresupuesto, setIsValidPresupuesto }
                         value={presupuesto}
                         onChange={e => setPresupuesto(Number(e.target.value))}
                     />
-                </div>
-
+                </div>  
                 <input type='submit'
                     value='Añadir'
                 />
-
                 {mensaje && <Mensaje tipo='error'>{mensaje}</Mensaje>}
             </form>
         </div>
