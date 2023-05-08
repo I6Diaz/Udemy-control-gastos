@@ -1,13 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Mensaje from './Mensaje'
 import CerrarBtn from '../img/cerrar.svg'
 
-const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
+const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto, gastoEditar }) => {
 
     const [mensaje, setMensaje] = useState('')
     const [nombre, setNombre] = useState('')
     const [cantidad, setCantidad] = useState('')
     const [categoria, setCategoria] = useState('')
+    const [fecha, setFecha] = useState('')
+    const [id, setId] = useState('')
+
+    useEffect(() => {
+        setNombre(gastoEditar.nombre)
+        setCategoria(gastoEditar.categoria)
+        setCantidad(gastoEditar.cantidad)
+        setId(gastoEditar.id)
+        setFecha(gastoEditar.fecha)
+    },[])
 
     const ocultarModal = () => {
         setAnimarModal(false)
@@ -28,7 +38,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
             }, 3000);
             return
         }
-        guardarGasto({nombre, cantidad, categoria})
+        guardarGasto({nombre, cantidad, categoria, id})
     }
 
     return (
@@ -43,7 +53,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
             <form
                 onSubmit={handleSubmit}
                 className={`formulario ${animarModal ? 'animar' : 'cerrar'}`}>
-                <legend>Nuevo Gasto</legend>
+                <legend>{gastoEditar.nombre ? 'Editar gasto' : 'Nuevo gasto'}</legend>
                 {mensaje && <Mensaje tipo='error'>{mensaje}</Mensaje>}
                 <div className='campo'>
                     <label htmlFor='nombre'>Nombre</label>
@@ -83,7 +93,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
                 </div>
                 <input
                     type='submit'
-                    value='Añadir Gasto'
+                    value={gastoEditar.nombre ? 'Editar gasto' : 'Añadir gasto'}
                 />
             </form>
         </div>
