@@ -4,7 +4,7 @@
 
 App Web para ver tus ingresos y controlar tus gastos.
 
-[https://media.giphy.com/media/LCdPNT81vlv3y/giphy.gif]
+![](https://media.giphy.com/media/LCdPNT81vlv3y/giphy.gif)
 
 ## Descripción funcional
 
