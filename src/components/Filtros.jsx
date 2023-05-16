@@ -24,5 +24,4 @@ const Filtros = ({filtro, setFiltro}) => {
     )
 }
 
-
 export default Filtros
